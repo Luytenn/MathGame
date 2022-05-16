@@ -27,6 +27,7 @@ class GameActivity : AppCompatActivity() {
     var correctAnswer = 0
     var userScore = 0
     var userLife = 3
+    var tipoOperacion: String = ""
 
     lateinit var timer : CountDownTimer
     private val startTimerMillis : Long = 20000
@@ -36,7 +37,26 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        supportActionBar!!.title = "Addition"
+        tipoOperacion = SharedPreferences().getSomeStringValue(MyApp.getContext(),Constante.PREF_OPERACION).toString()
+
+
+
+        if(tipoOperacion.equals("Addition"))
+        {
+            supportActionBar!!.title = "Addition"
+        }
+        else if(tipoOperacion.equals("Subtraction")){
+            supportActionBar!!.title = "Subtraction"
+        }
+        else
+        {
+            supportActionBar!!.title = "Multiplication"
+        }
+
+
+        val sf = SharedPreferences()
+
+        Log.d("infomacion", "TIPO DE OPERACION : "+ sf.getSomeStringValue(this,Constante.PREF_OPERACION))
 
         textScore = findViewById(R.id.textViewScore)
         textLife = findViewById(R.id.textViewLife)
@@ -103,14 +123,40 @@ class GameActivity : AppCompatActivity() {
 
     fun gameContinue()
     {
+
         val number1 = Random.nextInt(0,100)
         val number2 = Random.nextInt(0,100)
 
-        textQuestion.text = "$number1 + $number2"
-
-        correctAnswer = number1 + number2
+        typeOfOperation(tipoOperacion,number1,number2)
 
         startTimer()
+
+    }
+
+
+    fun typeOfOperation(tipo: String, number1: Int, number2: Int){
+
+        if(tipo.equals("Addition"))
+        {
+            textQuestion.text = "$number1 + $number2"
+
+            correctAnswer = number1 + number2
+        }
+        else if(tipo.equals("Subtraction"))
+        {
+            textQuestion.text = "$number1 - $number2"
+
+            correctAnswer = number1 - number2
+        }
+        else
+        {
+            textQuestion.text = "$number1 X $number2"
+
+            correctAnswer = number1 * number2
+        }
+
+
+
 
     }
 

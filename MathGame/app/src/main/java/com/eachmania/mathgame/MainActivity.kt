@@ -1,5 +1,6 @@
 package com.eachmania.mathgame
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,7 +11,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var addition : Button
     lateinit var subtraction : Button
     lateinit var multi : Button
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +25,37 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity,GameActivity::class.java)
             startActivity(intent)
 
+            val sf  = SharedPreferences()
+
+            sf.setSomeStringValue(Constante.PREF_OPERACION, "Addition")
+
+        }
+
+        subtraction.setOnClickListener {
+
+            val intent = Intent(this@MainActivity,GameActivity::class.java)
+            startActivity(intent)
+
+            val sf  = SharedPreferences()
+
+            sf.setSomeStringValue(Constante.PREF_OPERACION, "Subtraction")
+
+        }
+
+        multi.setOnClickListener {
+
+            val intent = Intent(this@MainActivity,GameActivity::class.java)
+            startActivity(intent)
+
+            val sf  = SharedPreferences()
+
+            sf.setSomeStringValue(Constante.PREF_OPERACION, "Multiplication")
+
         }
 
 
-
     }
+
 
 
 
