@@ -27,7 +27,7 @@ class GameActivity : AppCompatActivity() {
     var correctAnswer = 0
     var userScore = 0
     var userLife = 3
-    var tipoOperacion: String = ""
+    var tipoOperacion : String = ""
 
     lateinit var timer : CountDownTimer
     private val startTimerMillis : Long = 20000
@@ -37,8 +37,7 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        tipoOperacion = SharedPreferences().getSomeStringValue(MyApp.getContext(),Constante.PREF_OPERACION).toString()
-
+        tipoOperacion = SharedPreferences().getSomeStringValue(Constante.PREF_OPERACION).toString()
 
 
         if(tipoOperacion.equals("Addition"))
@@ -56,7 +55,7 @@ class GameActivity : AppCompatActivity() {
 
         val sf = SharedPreferences()
 
-        Log.d("infomacion", "TIPO DE OPERACION : "+ sf.getSomeStringValue(this,Constante.PREF_OPERACION))
+        Log.d("infomacion", "TIPO DE OPERACION : "+ sf.getSomeStringValue(Constante.PREF_OPERACION))
 
         textScore = findViewById(R.id.textViewScore)
         textLife = findViewById(R.id.textViewLife)

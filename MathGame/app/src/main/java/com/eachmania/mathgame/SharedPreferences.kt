@@ -11,8 +11,8 @@ class SharedPreferences {
     }
 
     fun getSharedPreferences(): SharedPreferences? {
-        return MyApp.getContext().getSharedPreferences(
-           APP_SETTINGS_FILE,
+        return MyAppKotlin.getContext()?.getSharedPreferences(
+            APP_SETTINGS_FILE,
             Context.MODE_PRIVATE
         )
     }
@@ -33,7 +33,7 @@ class SharedPreferences {
 
     }
 
-    fun getSomeStringValue(context:Context,dataLabel: String?): String? {
+    fun getSomeStringValue(dataLabel: String?): String? {
         return getSharedPreferences()?.getString(dataLabel,null)
     }
 
